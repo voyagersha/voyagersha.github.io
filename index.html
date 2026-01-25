@@ -3,42 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shashank's Personal Page</title>
+    <title>Shashank</title>
     <style>
+        :root {
+            --bg-top: #fcfcfc;
+            --bg-bottom: #fcfcfc;
+            --ink: #000000;
+            --muted: #3f3f3f;
+            --accent: #005eff;
+            --line: rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
+            color: var(--ink);
+            background: #fcfcfc;
+            line-height: 1.7;
         }
-        h1, h2 {
-            text-align: center;
-        }
+
         a {
-            color: #007BFF;
+            color: var(--accent);
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .page {
+            max-width: 980px;
+            margin: 64px auto 80px;
+            padding: 0 22px;
+            display: grid;
+            grid-template-columns: 200px minmax(0, 1fr);
+            gap: 48px;
+            align-items: start;
+            position: relative;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            left: 200px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--line);
+        }
+
+        .sidebar {
+            display: grid;
+            gap: 20px;
+            align-content: start;
+            position: sticky;
+            top: 32px;
+        }
+
+        .content {
+            min-width: 0;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin: 0;
+            color: var(--ink);
+        }
+
+        .profile-role {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .section {
+            margin-top: 42px;
+        }
+
+        .section:first-of-type {
+            margin-top: 0;
+        }
+
+        .section h2 {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.75rem;
+            color: var(--ink);
+            margin: 0 0 14px;
+        }
+
+        .facts {
+            padding-left: 18px;
+            color: var(--muted);
+            margin: 16px 0 0;
+        }
+
+        .writing-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .writing-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 16px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .writing-date {
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .writing-title {
+            font-size: 1.1rem;
+            color: var(--ink);
+        }
+
+        .writing-excerpt {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        .footer {
+            margin-top: 52px;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fade-in 0.7s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.08s; }
+        .delay-2 { animation-delay: 0.16s; }
+        .delay-3 { animation-delay: 0.24s; }
+
+        @keyframes fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .writing-item {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Shashank</h1>
-    <p>I'm an engineer, aspiring entrepreneur, and sci-fi lover.</p>
+    <main class="page">
+        <aside class="sidebar reveal">
+            <div>
+                <h1 class="profile-name">Shashank Iyer</h1>
+                <div class="profile-role">Engineer | Builder</div>
+            </div>
+            <!-- TODO: Bring back nav when more sections/writings are added
+            <nav class="nav">
+                <a href="#about">About</a>
+                <a href="#career">Experience</a>
+                <a href="#writings">Reflection</a>
+                <a href="#socials">Social</a>
+            </nav>
+            -->
+        </aside>
 
-    <h2>Some things about me:</h2>
-    <ul>
-        <li>Grew up in Bangalore & Dubai.</li>
-        <li>I've lived in Bangalore, Dubai, Lancaster (UK), Chicago, Toronto & San Francisco.</li>
-        <li>On the Internet since the early 2000s—it's felt like my true "home town."</li>
-        <li>Love reading sci-fi, especially authors like Isaac Asimov and Philip K. Dick.</li>
-        <li>Currently focused on building predictive maintenance software.</li>
-        <li>Aspiring to start my own company in the future.</li>
-        <li>Enjoy exploring new cuisines and experimenting with astrophotography.</li>
-    </ul>
+        <div class="content">
+            <section id="about" class="section reveal delay-1">
+                <h2>About me</h2>
+                <ul class="facts">
+                    <li>Building Jarvis for industrial maintenance/reliability.</li>
+                    <li>Engineer with mechanical + industrial roots; now software, AI, robotics.</li>
+                    <li>Based in San Francisco. From Bangalore + Dubai. Lived in Lancaster, Chicago, Toronto.</li>
+                    <li style="margin-top: 16px;">Hobbies:
+                        <ul style="margin-top: 8px;">
+                            <li>Currently <a href="https://www.goodreads.com/voyagersha">reading</a>: <a href="https://www.goodreads.com/book/show/177068.The_Fabric_of_Reality">The Fabric of Reality</a>, <a href="https://press.stripe.com/maintenance-part-one">The Maintenance of Everything</a>.</li>
+                            <li>Outdoors: <a href="https://www.strava.com/athletes/voyagersha">swim, bike, run, hike</a>.</li>
+                            <li>Enjoy <a href="https://www.instagram.com/voyagersha/">photography</a> and cooking.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="career" class="section reveal delay-2">
+                <h2>Experience</h2>
+                <ul class="facts">
+                    <li>Built predictive maintenance software at <a href="https://uptake.com">Uptake</a>.</li>
+                    <li>Raised $4m, built indoor urban farm at <a href="https://www.crunchbase.com/organization/urban-till">Urban Till</a>.</li>
+                    <li>Fellow at <a href="https://www.beondeck.com/">On Deck</a>.</li>
+                    <li><a href="https://wro-association.org/">Robot Olympiads</a> in high school.</li>
+                </ul>
+            </section>
+
+            <!-- TODO: Add Reflection section when writings are ported
+            <section id="writings" class="section reveal delay-3">
+                <h2>Reflection</h2>
+                <div class="writing-list">
+                    <article class="writing-item">
+                        <div class="writing-date">2024</div>
+                        <div>
+                            <a class="writing-title" href="#">Building for reliability before scale</a>
+                            <p class="writing-excerpt">
+                                Notes on trust, instrumentation, and messy real-world signals.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="writing-item">
+                        <div class="writing-date">2023</div>
+                        <div>
+                            <a class="writing-title" href="#">Curiosity as an operating system</a>
+                            <p class="writing-excerpt">
+                                A short take on exploration as the default.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="writing-item">
+                        <div class="writing-date">2022</div>
+                        <div>
+                            <a class="writing-title" href="#">Notes from a night under the stars</a>
+                            <p class="writing-excerpt">
+                                What astrophotography taught me about patience and perspective.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            -->
+
+            <section id="socials" class="section reveal delay-3">
+                <h2>Social</h2>
+                <ul class="facts">
+                    <li><a href="https://x.com/voyagersha">X.com</a></li>
+                    <li><a href="https://www.linkedin.com/in/siyer16/">LinkedIn</a></li>
+                    <li><a href="https://github.com/siyer16">GitHub</a></li>
+                    <li><a href="https://www.instagram.com/voyagersha/">Instagram</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
 </body>
 </html>
